@@ -69,6 +69,14 @@ function marketplace_examples_install() {
             'commerce_marketplace_payment_parallel_example' => 1,
             'bank_transfer' => 1,
           ),
+          'settings' => array(
+            'bank_transfer' => array(
+              'information' => array(
+                'value' => 'Pay using Bank transfer. (1)',
+                'format' => 'plain_text',
+              ),
+            ),
+          ),
         ),
       ),
     ),
@@ -82,6 +90,20 @@ function marketplace_examples_install() {
             'bank_transfer' => 1,
             'cash_on_delivery' => 1,
           ),
+          'settings' => array(
+            'bank_transfer' => array(
+              'information' => array(
+                'value' => 'Pay using Bank transfer. (2)',
+                'format' => 'plain_text',
+              ),
+            ),
+            'cash_on_delivery' => array(
+              'information' => array(
+                'value' => 'Pay using Cash on delivery. (2)',
+                'format' => 'plain_text',
+              ),
+            ),
+          ),
         ),
       ),
     ),
@@ -93,6 +115,20 @@ function marketplace_examples_install() {
           'enabled' => array(
             'bank_transfer' => 1,
             'cheque' => 1,
+          ),
+          'settings' => array(
+            'bank_transfer' => array(
+              'information' => array(
+                'value' => 'Pay using Bank transfer. (3)',
+                'format' => 'plain_text',
+              ),
+            ),
+            'cheque' => array(
+              'information' => array(
+                'value' => 'Pay using Cheque. (3)',
+                'format' => 'plain_text',
+              ),
+            ),
           ),
         ),
       ),
