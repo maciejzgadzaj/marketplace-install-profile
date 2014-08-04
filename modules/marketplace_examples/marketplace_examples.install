@@ -63,18 +63,47 @@ function marketplace_examples_install() {
     1 => array(
       'title' => 'Store No 1',
       'uid' => 2,
+      'data' => array(
+        'payment_methods' => array(
+          'enabled' => array(
+            'commerce_marketplace_payment_parallel_example' => 1,
+            'bank_transfer' => 1,
+          ),
+        ),
+      ),
     ),
     2 => array(
       'title' => 'Store No 2',
       'uid' => 3,
+      'data' => array(
+        'payment_methods' => array(
+          'enabled' => array(
+            'commerce_marketplace_payment_parallel_example' => 1,
+            'bank_transfer' => 1,
+            'cash_on_delivery' => 1,
+          ),
+        ),
+      ),
     ),
     3 => array(
       'title' => 'Store No 3',
       'uid' => 4,
+      'data' => array(
+        'payment_methods' => array(
+          'enabled' => array(
+            'bank_transfer' => 1,
+            'cheque' => 1,
+          ),
+        ),
+      ),
     ),
   );
   foreach ($stores as $delta => $values) {
-    $entity = entity_get_controller('commerce_store')->create(array('type' => 'store'));
+    $entity = entity_get_controller('commerce_store')->create(array(
+      'type' => 'store',
+      'data' => $values['data'],
+    ));
+    unset($values['data']);
     $wrapper = entity_metadata_wrapper('commerce_store', $entity);
     foreach ($values as $key => $value) $wrapper->$key = $value;
     commerce_store_save($entity);
