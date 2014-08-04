@@ -56,6 +56,7 @@ dependencies[] = commerce_tax
 dependencies[] = commerce_tax_ui
 
 ; Commerce contribs
+dependencies[] = commerce_addressbook
 dependencies[] = commerce_cop
 dependencies[] = commerce_features
 dependencies[] = commerce_shipping

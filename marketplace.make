@@ -50,6 +50,9 @@ projects[commerce][type] = "module"
 projects[addressfield][version] = 1.0-beta5
 projects[addressfield][type] = "module"
 
+projects[commerce_addressbook][version] = 2.0-rc7
+projects[commerce_addressbook][type] = "module"
+
 projects[commerce_cop][version] = 1.0-beta1
 projects[commerce_features][type] = "module"
 
