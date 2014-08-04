@@ -429,6 +429,16 @@ function marketplace_install() {
     ->execute();
   variable_set('admin_theme', 'seven');
   variable_set('node_admin_theme', '1');
+
+  // Enable address book for the shipping and billing address panes.
+  variable_set('commerce_customer_profile_shipping_addressbook', 1);
+  variable_set('commerce_customer_profile_billing_addressbook', 1);
+  // Enable address copying on the billing pane.
+  variable_set('commerce_customer_profile_billing_profile_copy', 1);
+  //  Make copying information the default action for the billing pane.
+  variable_set('commerce_customer_profile_billing_profile_copy_default', 1);
+  // Copy from the shipping pane.
+  variable_set('commerce_customer_profile_billing_profile_copy_source', 'shipping');
 }
 
 /**
