@@ -1,0 +1,182 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the marketplace_examples module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function marketplace_examples_install() {
+
+  $merchant_role = user_role_load_by_name(COMMERCE_STORE_MERCHANT);
+  $users = array(
+    2 => array(
+      'uid' => 2,
+      'name' => 'Merchant 1',
+      'mail' => 'merchant1@example.com',
+      'pass' => 'password',
+      'status' => 1,
+      'init' => 'email address',
+      'roles' => array(
+        $merchant_role->rid => COMMERCE_STORE_MERCHANT,
+      ),
+    ),
+    3 => array(
+      'uid' => 3,
+      'name' => 'Merchant 2',
+      'mail' => 'merchant2@example.com',
+      'pass' => 'password',
+      'status' => 1,
+      'init' => 'email address',
+      'roles' => array(
+        $merchant_role->rid => COMMERCE_STORE_MERCHANT,
+      ),
+    ),
+    4 => array(
+      'uid' => 4,
+      'name' => 'Merchant 3',
+      'mail' => 'merchant3@example.com',
+      'pass' => 'password',
+      'status' => 1,
+      'init' => 'email address',
+      'roles' => array(
+        $merchant_role->rid => COMMERCE_STORE_MERCHANT,
+      ),
+    ),
+  );
+  foreach ($users as $uid => $values) {
+    $account = user_save('', $values);
+    $example_entity_ids['user'][] = $account->uid;
+  }
+
+  $stores = array(
+    1 => array(
+      'title' => 'Store No 1',
+      'uid' => 2,
+    ),
+    2 => array(
+      'title' => 'Store No 2',
+      'uid' => 3,
+    ),
+    3 => array(
+      'title' => 'Store No 3',
+      'uid' => 4,
+    ),
+  );
+  foreach ($stores as $delta => $values) {
+    $entity = entity_get_controller('commerce_store')->create(array('type' => 'store'));
+    $wrapper = entity_metadata_wrapper('commerce_store', $entity);
+    foreach ($values as $key => $value) $wrapper->$key = $value;
+    commerce_store_save($entity);
+    $stores[$delta] = $entity;
+    $example_entity_ids['commerce_store'][] = $entity->store_id;
+  }
+
+  $products = array(
+    0 => array(
+      'sku' => 'PROD-00',
+      'title' => 'Product Zero',
+      'commerce_price' => array(
+        'amount' => 100,
+        'currency_code' => 'EUR',
+      ),
+      'uid' => 2,
+    ),
+    1 => array(
+      'sku' => 'PROD-01',
+      'title' => 'Product One',
+      'commerce_price' => array(
+        'amount' => 1000,
+        'currency_code' => 'EUR',
+      ),
+      'uid' => 2,
+      'commerce_store' => 1,
+    ),
+    2 => array(
+      'sku' => 'PROD-02',
+      'title' => 'Product Two',
+      'commerce_price' => array(
+        'amount' => 2000,
+        'currency_code' => 'EUR',
+      ),
+      'uid' => 3,
+      'commerce_store' => 2,
+    ),
+    3 => array(
+      'sku' => 'PROD-03',
+      'title' => 'Product Three',
+      'commerce_price' => array(
+        'amount' => 3000,
+        'currency_code' => 'EUR',
+      ),
+      'uid' => 4,
+      'commerce_store' => 3,
+    ),
+  );
+  $example_entity_ids['commerce_product'] = array();
+  foreach ($products as $delta => $values) {
+    $entity = entity_get_controller('commerce_product')->create(array('type' => 'product'));
+    $wrapper = entity_metadata_wrapper('commerce_product', $entity);
+    if (!empty($values['commerce_store'])) {
+      $values['commerce_store'] = $stores[$values['commerce_store']]->store_id;
+    }
+    foreach ($values as $key => $value) $wrapper->$key = $value;
+    commerce_product_save($entity);
+    $products[$delta] = $entity;
+    $example_entity_ids['commerce_product'][] = $entity->product_id;
+  }
+
+  $product_displays = array(
+    0 => array(
+      'title' => 'Product Zero',
+      'body' => array('Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+      'field_product' => array(0),
+      'uid' => 2,
+      'language' => LANGUAGE_NONE,
+      'promote' => 1,
+    ),
+    1 => array(
+      'title' => 'Product One',
+      'body' => array('In tincidunt metus enim, in cursus quam ornare vitae.'),
+      'field_product' => array(1),
+      'uid' => 2,
+      'language' => LANGUAGE_NONE,
+      'promote' => 1,
+    ),
+    2 => array(
+      'title' => 'Product Two',
+      'body' => array('Nam a nisl viverra, eleifend felis sit amet, euismod dolor.'),
+      'field_product' => array(2),
+      'uid' => 3,
+      'language' => LANGUAGE_NONE,
+      'promote' => 1,
+    ),
+    3 => array(
+      'title' => 'Product Three',
+      'body' => array('Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'),
+      'field_product' => array(3),
+      'uid' => 4,
+      'language' => LANGUAGE_NONE,
+      'promote' => 1,
+    ),
+  );
+  $example_entity_ids['node'] = array();
+  foreach ($product_displays as $delta => $values) {
+    $entity = (object) array(
+      'type' => 'product_display',
+      'uid' => $values['uid'],
+    );
+    node_save($entity);
+    unset($values['uid']);
+    $wrapper = entity_metadata_wrapper('node', $entity);
+    foreach ($values['field_product'] as $key => $value) $values['field_product'][$key] = $products[$value]->product_id;
+    foreach ($values as $key => $value) $wrapper->$key = $value;
+    node_save($entity);
+    $product_displays[$delta] = $entity;
+    $example_entity_ids['node'][] = $entity->nid;
+  }
+
+  variable_set('marketplace_examples_entity_ids', $example_entity_ids);
+}

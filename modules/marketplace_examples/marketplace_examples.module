@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Marketplace Examples feature.
+ */
+
+include_once 'marketplace_examples.features.inc';

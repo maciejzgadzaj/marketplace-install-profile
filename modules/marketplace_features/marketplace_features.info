@@ -1,0 +1,16 @@
+name = Marketplace Features
+description = Feature configuration for Marketplace install profile.
+core = 7.x
+package = Commerce Marketplace
+dependencies[] = commerce_cart
+dependencies[] = entityreference
+dependencies[] = features
+dependencies[] = options
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = body
+features[field_base][] = field_product
+features[field_instance][] = node-product_display-body
+features[field_instance][] = node-product_display-field_product
+features[node][] = product_display
+
