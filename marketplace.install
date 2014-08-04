@@ -430,3 +430,27 @@ function marketplace_install() {
   variable_set('admin_theme', 'seven');
   variable_set('node_admin_theme', '1');
 }
+
+/**
+ * Implements hook_install_tasks().
+ */
+function marketplace_install_tasks($install_state) {
+  $tasks = array();
+
+  $tasks['marketplace_configure_permissions'] = array(
+    'display_name' => st('Configure permissions'),
+    'type' => 'batch',
+  );
+
+  return $tasks;
+}
+
+/**
+ * Install task callback.
+ *
+ * @see marketplace_install_tasks()
+ */
+function marketplace_configure_permissions() {
+  user_role_grant_permissions(DRUPAL_ANONYMOUS_RID, array('access checkout', 'access devel information'));
+  user_role_grant_permissions(DRUPAL_AUTHENTICATED_RID, array('access checkout', 'access devel information'));
+}
