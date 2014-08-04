@@ -45,6 +45,14 @@ function marketplace_examples_install() {
         $merchant_role->rid => COMMERCE_STORE_MERCHANT,
       ),
     ),
+    5 => array(
+      'uid' => 5,
+      'name' => 'User',
+      'mail' => 'user@example.com',
+      'pass' => 'password',
+      'status' => 1,
+      'init' => 'email address',
+    ),
   );
   foreach ($users as $uid => $values) {
     $account = user_save('', $values);
