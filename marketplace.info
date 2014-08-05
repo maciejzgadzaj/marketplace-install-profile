@@ -57,9 +57,12 @@ dependencies[] = commerce_tax_ui
 
 ; Commerce contribs
 dependencies[] = commerce_addressbook
+dependencies[] = commerce_authnet
 dependencies[] = commerce_checkout_progress
 dependencies[] = commerce_cop
 dependencies[] = commerce_features
+dependencies[] = commerce_paypal
+dependencies[] = commerce_paypal_wps
 dependencies[] = commerce_shipping
 dependencies[] = commerce_shipping_ui
 dependencies[] = commerce_flat_rate

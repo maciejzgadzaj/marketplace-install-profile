@@ -53,12 +53,18 @@ projects[addressfield][type] = "module"
 projects[commerce_addressbook][version] = 2.0-rc7
 projects[commerce_addressbook][type] = "module"
 
+projects[commerce_authnet][version] = 1.1
+projects[commerce_authnet][type] = "module"
+
 projects[commerce_cop][version] = 1.0-beta1
 projects[commerce_features][type] = "module"
 
 projects[commerce_features][version] = 1.0
 projects[commerce_features][type] = "module"
 projects[commerce_features][patch][] = "http://drupal.org/files/1402762_export_flat_rate_commerce_features-6.patch"
+
+projects[commerce_paypal][version] = 2.3
+projects[commerce_paypal][type] = "module"
 
 projects[commerce_shipping][version] = 2.1
 projects[commerce_shipping][type] = "module"
@@ -73,4 +79,5 @@ projects[commerce_marketplace][type] = module
 projects[commerce_marketplace][download][type] = git
 projects[commerce_marketplace][download][branch] = "7.x-1.x"
 projects[commerce_marketplace][download][url] = http://git.drupal.org/sandbox/maciej.zgadzaj/1950386.git
-projects[commerce_marketplace][download][revision] = 9172c4167680ec60b5bc04b966bd0e4694fac0d4
+projects[commerce_marketplace][download][revision] = 3c425d85ddff0981ddf5da3edf387101e4c69f55
+
