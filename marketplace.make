@@ -2,7 +2,7 @@ api = 2
 core = 7.x
 
 ; Core
-projects[drupal][version] = 7.30
+projects[drupal][version] = 7.31
 
 ; Contribs
 projects[admin_menu][version] = 3.0-rc4
