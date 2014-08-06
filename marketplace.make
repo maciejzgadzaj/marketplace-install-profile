@@ -79,5 +79,4 @@ projects[commerce_marketplace][type] = module
 projects[commerce_marketplace][download][type] = git
 projects[commerce_marketplace][download][branch] = "7.x-1.x"
 projects[commerce_marketplace][download][url] = http://git.drupal.org/sandbox/maciej.zgadzaj/1950386.git
-projects[commerce_marketplace][download][revision] = 3c425d85ddff0981ddf5da3edf387101e4c69f55
 
